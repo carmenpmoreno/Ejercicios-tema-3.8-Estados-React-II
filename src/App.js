@@ -10,26 +10,15 @@ class App extends React.Component {
       language: "",
     }
     this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
-    this.handleSelectChange = this.handleSelectChange.bind(this);
-
   }
 
   handleInputChange(event) {
+    const text = event.target.name;
     this.setState({
-      name: event.target.value,
+      [text]: event.target.value,
     })
   }
-  handleDescriptionChange(event) {
-    this.setState({
-      description: event.target.value,
-    })
-  }
-  handleSelectChange(event) {
-    this.setState({
-      language: event.target.value,
-    })
-  }
+
   render() {
     return (
       <div className="App">
@@ -37,17 +26,19 @@ class App extends React.Component {
           <label htmlFor="name" />
           <input 
             id="name" 
+            name="name"
             type="text" 
             value={this.state.name}
             onChange = {this.handleInputChange}
           />
           <textarea 
-          id="text"
-          onChange = {this.handleDescriptionChange}
+          name="description"
+          onChange = {this.handleInputChange}
           />
           <select 
+            name="language"
             value={this.state.language}
-            onChange = {this.handleSelectChange}
+            onChange = {this.handleInputChange}
           >
             <option value="spanish">spanish</option>
             <option value="english">english</option>
